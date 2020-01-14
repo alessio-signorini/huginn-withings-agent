@@ -97,11 +97,12 @@ module Agents
         data['end_time']     ||= data['start_time'].to_i + data['duration'].to_i
         data['date']         ||= Time.at(data['start_time'].to_i).in_time_zone(data['timezone']).to_date.to_s
 
-        old_id      = memory.dig('seen', event.id)
+        event_id    = data['original_id'] || event.id
+        old_id      = memory.dig('seen', event_id)
         activity_id = push_activity(data, old_id)
           log('Failed to create activity', event) and next unless activity_id
 
-        memory['seen'][event.id] = activity_id
+        memory['seen'][event_id] = activity_id
       end
 
       return true
