@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "huginn_withings_agent"
-  spec.version       = '0.1'
+  spec.version       = '1.0'
   spec.authors       = ["Alessio Signorini"]
   spec.email         = ["alessio@signorini.us"]
 
@@ -23,5 +23,4 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "huginn_agent"
   spec.add_runtime_dependency "httparty"
-  spec.add_runtime_dependency "httplog"
 end

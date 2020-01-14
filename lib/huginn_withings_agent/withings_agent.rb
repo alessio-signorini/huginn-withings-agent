@@ -1,8 +1,10 @@
 module Agents
   class WithingsAgent < Agent
-    default_schedule '12h'
-
     include FormConfigurable
+
+    cannot_be_scheduled!
+    cannot_create_events!
+    can_dry_run!
 
     description <<-MD
       Adds Activities from Events to your Withings Account
@@ -12,15 +14,19 @@ module Agents
       a Withings) and want to consolidate your calories consumption into one.
 
       Withings has an OAUTHv2 API but it only allows to read activities. This
-      agent simulates Withings' app to add activities using their private one.
-      This is why it requires username and password. The password is not stored
-      in plain text.
+      agent simulates Withings' Website to add activities using their private
+      one. This is why it requires username and password. The password is not
+      stored in plain text.
+
+      You can retrieve your `user_id` from the website. Login with your
+      credentials then look at the URL. The `user_id` is the number at the
+      beginning.
 
       ## Example Event
       The agent expects an event with the following fields
       <pre>
         {
-          'activity_name'   => 'Walking',               # defaults to `other`
+          'activity_name'   => 'Walking',               # o/w defaults to `other`
           'timezone'        => 'America/Los_Angeles',   # o/w uses `options`
           'start_time'      => 1578401100,              # epoch
           'end_time'        => 1578404700,              # epoch
