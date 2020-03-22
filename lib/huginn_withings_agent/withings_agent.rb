@@ -229,11 +229,11 @@ module Agents
 
     def to_type(name)
       case name.try(:downcase)
-        when 'walking'      then 1
-        when 'running'      then 2
-        when 'hiking'       then 3
-        when 'bicycling'    then 4
-        when 'swimming'     then 5
+        when 'walking', 'walk'              then 1
+        when 'running', 'run'               then 2
+        when 'hiking', 'hike'               then 3
+        when 'bicycling', 'bike', 'ride'    then 4
+        when 'swimming', 'swim'             then 5
         when 'tennis'       then 12
         when 'weights'      then 16
         when 'class'        then 17
